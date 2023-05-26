@@ -1,7 +1,7 @@
 FROM alpine:3.18
 WORKDIR /home/root
 
-# Install Java JDK
+# Install JDK
 RUN apk add --update --no-cache openjdk17-jdk
 
 # Get Gradle Build Tool
@@ -25,8 +25,8 @@ COPY --from=0 /opt/gradle /opt/gradle
 COPY --from=0 /home/root/android/build-tools /home/root/android/build-tools
 COPY --from=0 /home/root/android/cmdline-tools /home/root/android/cmdline-tools
 
-# Install Java JDK
-RUN apk add --update --no-cache openjdk17-jdk
+# Install JDK, glibc compatibility layer, and libgcc (needed by some android build tools)
+RUN apk add --update --no-cache openjdk17-jdk gcompat libgcc
 
 # Add Gradle and Android tools to PATH
 ENV PATH="${PATH}:/opt/gradle/gradle-8.1.1/bin:/home/root/android/cmdline-tools/bin:/home/root/android/build-tools/30.0.3"

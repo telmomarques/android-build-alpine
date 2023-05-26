@@ -1,7 +1,7 @@
 FROM alpine:3.18
 WORKDIR /home/root
 
-# Install Java JDK
+# Install Java JDK 
 RUN apk add --update --no-cache openjdk17-jdk
 
 # Get Gradle Build Tool
